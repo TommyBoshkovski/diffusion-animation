@@ -822,7 +822,7 @@
 				trace1.x.push(lst);
 				trace1.y.push(p4);
 				
-				if(document.getElementById('start').innerHTML != "Start"){
+				if(document.getElementById('start').innerHTML == "Start"){
 				var tb = document.getElementById('tabela');
 				var row = tb.insertRow(-1);
 				var cell1 = row.insertCell(0);
@@ -877,8 +877,8 @@
 <td>
     <canvas id="myCanvas" width="700" height="900"></canvas>
 	</td>
-	<td style="">
-	<div style="margin-top:-450px;margin-left:40px">
+	<td style="vertical-align: top;">
+	<div style="margin-left:40px">
 	<canvas id="myCanvas1" width="578" height="220"></canvas>
     <br/>
 	<center>

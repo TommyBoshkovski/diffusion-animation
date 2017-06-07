@@ -785,9 +785,9 @@
 				var ball = balls[n];
 				if(ball.x<recRed.x){
 				//console.log("ball[" + n + "].x = " + balls[n].x + "\n");
-				signal += Math.abs(Math.cos(((ball.x-(recRed.x-60))/70)*Math.PI));
+				signal += Math.abs(Math.cos(((ball.x-(recRed.x-60))/60)*Math.PI));
 				}
-				else signal += Math.abs(Math.cos(((ball.x-recRed.x)/70)*Math.PI));
+				else signal += Math.abs(Math.cos(((ball.x-recRed.x)/60)*Math.PI));
 				}
 				signal = signal/29;
 				var p1 = Math.abs(signal-0.5);

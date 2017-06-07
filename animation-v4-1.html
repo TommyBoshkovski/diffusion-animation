@@ -10,6 +10,15 @@
         margin: 0px;
         padding: 0px;
       }
+	  #tabela {
+    border-collapse: collapse;
+	border: 1px solid black;
+}
+
+   #tabela td {
+   border: 1px solid black;
+    
+}
     </style>
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 	<script>
@@ -117,6 +126,13 @@
 		context1.lineTo(canvas.width, 180);
 		context1.stroke();
 		
+		context1.font = "15px Arial";
+		context1.fillText("A",40,210);
+		context1.fillText("B",(250-(D/2+(delta*1))),210);
+		context1.fillText("C",(250-(D/2+(delta*1)))+ delta,210);
+		context1.fillText("D",255,210);
+		context1.fillText("E",((255+D/2)),210);
+		context1.fillText("F",((255+D/2)) + delta,210);
 		
 		context.globalAlpha = 0.5;
 		context.fillStyle = 'red';
@@ -198,7 +214,17 @@
 		rv = xacc[14];
 		i +=1;
 		}
-		runAnimation = !runAnimation;
+		if(rec.x == 460 && document.getElementById('start').innerHTML == "Start")
+		{
+			stopAni();
+			balls = initBalls();
+	    rec = new Rec(10,0.5,5);
+		
+		recRed = new Rec(70,balls[14].vx,2)
+		rv = xacc[14];
+			runAnimation = true;
+		}
+		else runAnimation = !runAnimation;
 		
 		if(runAnimation){
 		 document.getElementById('start').innerHTML ="Pause";
@@ -240,7 +266,8 @@
         // G
 		var pp = Math.floor(Math.random() * 28) + 1;
 		var vel;
-		if(hop>20) vel=1;
+		if (hop==100) vel=0;
+		if(hop>20 && hop<100) vel=1;
 		else vel = 20/hop;
 		var yy = 10;
 		balls.push(new Ball(70, yy, 0.8, vel, g, blue,0));
@@ -278,7 +305,8 @@
 		if(rec.x >= 40 && rec.x < (250-(D/2+(delta*1)))){
 		recRed.x += recRed.vx;
 		im.x += recRed.vx;
-		start_dif=true;
+		if(document.getElementById("dv").valueAsNumber == 0) start_dif = false;
+		else	start_dif=true;
         for(var n = 0; n < balls.length; n++) {
           var ball = balls[n];
           // set ball position based on velocity
@@ -323,7 +351,8 @@
 		if(rec.x >= (250-(D/2+(delta*1))) && rec.x<(250-D/2)){
 		recRed.x += recRed.vx+rv;
 		im.x += recRed.vx+rv;
-		start_dif=true;
+		if(document.getElementById("dv").valueAsNumber == 0) start_dif = false;
+		else	start_dif=true;
         for(var n = 0; n < balls.length; n++) {
           var ball = balls[n];
 		  if (hop - current_hop == 0)
@@ -361,7 +390,8 @@
 		}
 		
 		if(rec.x>= (250-D/2) && rec.x<245){
-		start_dif=true;
+		if(document.getElementById("dv").valueAsNumber == 0) start_dif = false;
+		else	start_dif=true;
 		recRed.x += recRed.vx;
 		im.x += recRed.vx;
         for(var n = 0; n < balls.length; n++) {
@@ -401,7 +431,8 @@
 		}
 		
 		if(rec.x >= 245 && rec.x<255){
-		start_dif=true;
+		if(document.getElementById("dv").valueAsNumber == 0) start_dif = false;
+		else	start_dif=true;
 		if (rec.x == 245)
 			{
 				half = (recRed.x - 70)/2;
@@ -437,7 +468,8 @@
 		
 		
 		if(rec.x >= 255 && rec.x<(255+D/2)){
-		start_dif=true;
+		if(document.getElementById("dv").valueAsNumber == 0) start_dif = false;
+		else	start_dif=true;
 		if(rec.x == 255) {
 		recRed.vx *= -1;
 		for(var n = 0; n < balls.length; n++) {
@@ -491,7 +523,8 @@
 		}
 		
 		if(rec.x >= (255+D/2) && rec.x <(255+((D/2)+(delta*1)))){
-		start_dif=true;
+		if(document.getElementById("dv").valueAsNumber == 0) start_dif = false;
+		else	start_dif=true;
 		recRed.x += recRed.vx+rv;
 		im.x += recRed.vx+rv;
         for(var n = 0; n < balls.length; n++) {
@@ -533,7 +566,8 @@
 		if(rec.x >= (255+((D/2)+(delta*1))) && rec.x<460){
 		recRed.x += recRed.vx;
 		im.x += recRed.vx;
-        start_dif=true;
+        if(document.getElementById("dv").valueAsNumber == 0) start_dif = false;
+		else	start_dif=true;
         for(var n = 0; n < balls.length; n++) {
           var ball = balls[n];
 		  if (hop - current_hop == 0 && rec.x + hop <460)
@@ -666,6 +700,13 @@
 		context1.globalAlpha = 0.5;
 		context1.fillRect(rec.x, 0, 5, 300);
 		context1.globalAlpha = 1;
+		context1.font = "15px Arial";
+		context1.fillText("A",40,210);
+		context1.fillText("B",(250-(D/2+(delta*1))),210);
+		context1.fillText("C",(250-(D/2+(delta*1)))+ delta,210);
+		context1.fillText("D",255,210);
+		context1.fillText("E",((255+D/2)),210);
+		context1.fillText("F",((255+D/2)) + delta,210);
 		context.drawImage(im.img,im.x, 580);
         // render
         context.beginPath();
@@ -760,6 +801,7 @@
 		if (rec.x==460)
 		{
 			runAnimation = false;
+			document.getElementById('start').innerHTML ="Start";
 			
 			for(var n = 0; n < balls.length; n++) {
 				var ball = balls[n];
@@ -780,7 +822,14 @@
 				trace1.x.push(lst);
 				trace1.y.push(p4);
 				
-				document.getElementById('table').innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + b  + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + p4.toFixed(2) + "<br/>";
+				if(document.getElementById('start').innerHTML != "Start"){
+				var tb = document.getElementById('tabela');
+				var row = tb.insertRow(-1);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				cell1.innerHTML = b;
+				cell2.innerHTML = trace1.y[trace1.y.length-1].toFixed(2);
+				}
 				signal = 0;
 				
 		}
@@ -830,13 +879,20 @@
 	</td>
 	<td style="">
 	<div style="margin-top:-450px;margin-left:40px">
-	<canvas id="myCanvas1" width="578" height="200"></canvas>
+	<canvas id="myCanvas1" width="578" height="220"></canvas>
     <br/>
+	<center>
+	<button onclick="ses()">Spin Echo Sequence [SE]</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button onclick="gre()">Gradient Echo Sequence [GRE]</button>
+	</center>
+	<br/>
+	
+	
 	<label style="font-size:24px"><b>G</b></label> &nbsp;&nbsp;&nbsp; <input type="number" id="g" onchange="change()" max="300" value="300" min="0" style="width:50px">&nbsp;&nbsp;&nbsp;<label><i>mT/m &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></label>
 	<label style="font-size:24px"><b>&#916;</b></label> &nbsp;&nbsp;&nbsp; <input type="number" id="Del" onchange="change()" value="40" max="40"  min="0" style="width:50px">&nbsp;&nbsp;&nbsp;<label><i>ms &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></label>
 	<label style="font-size:24px"><b>&#948;</b></label> &nbsp;&nbsp;&nbsp; <input type="number" id="delta" onchange="change()" max="40" value="40" min="0" style="width:50px">&nbsp;&nbsp;&nbsp;<label><i>ms&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </i></label>
 	<br/>&nbsp;<br/>
-	<label style="font-size:18px">diffusion coefficient</label> &nbsp;&nbsp;&nbsp; <input type="range" id="dv" onchange="change()" max="95" min="1" value="95" style="width:50px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<label style="font-size:18px">diffusion coefficient</label> &nbsp;&nbsp;&nbsp; <input type="range" id="dv" onchange="change()" max="95" min="0" value="95" style="width:50px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<script>
 	function changeB(){
 	var g = document.getElementById("g").value*1.0;
@@ -854,6 +910,7 @@
 			var p6 = D-p5;
 			var p7 = p6/1000;
 			b = p4*p7;
+			b = b/274854.1351658991;
 		console.log("b= " , b);
 		}
   }
@@ -861,21 +918,14 @@
 	
 	<button id="start" onclick="poc()">Start</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<br/>
-	<button onclick="ses()">Spin Echo Sequence [SE]</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<button onclick="gre()">Gradient Echo Sequence [GRE]</button>
 	<img src="oska.png" id="img" style="display: none;" />
 	</div>
-	<table>
-	<tr><td style="margin-top: -500px">
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Signal<br/>
-	<p id="table"> </p>
-	
-	</td>
-	<td>
-	
-	</td>
-	</tr>
+	<br/>
+	<br/>
+	<center><table id="tabela" style="text-align: center; border: 1">
+	<tr><td>Relative b-value</td><td>Relative signal</td></tr>
 	</table>
+	</center>
   <script>
   
 var trace2 = {

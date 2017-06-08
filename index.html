@@ -780,14 +780,13 @@
 		}	
 		}
 		}
-		
-		for(var n = 0; n < balls.length; n++) {
+		/*		for(var n = 0; n < balls.length; n++) {
 				var ball = balls[n];
 				if(ball.x<recRed.x){
 				//console.log("ball[" + n + "].x = " + balls[n].x + "\n");
-				signal += Math.abs(Math.cos(((ball.x-(recRed.x-60))/60)*Math.PI));
+				signal += Math.cos(((ball.x-recRed.x)/60)*Math.PI);
 				}
-				else signal += Math.abs(Math.cos(((ball.x-recRed.x)/60)*Math.PI));
+				else signal += Math.cos(((ball.x-recRed.x)/60)*Math.PI);
 				}
 				signal = signal/29;
 				var p1 = Math.abs(signal-0.5);
@@ -801,7 +800,7 @@
 				trace1.y.push(p4);
 				
 				signal = 0;
-				lst+=1;
+				lst+=1;*/
 		
 		if (rec.x==460)
 		{
@@ -812,9 +811,9 @@
 				var ball = balls[n];
 				if(ball.x<recRed.x){
 				//console.log("ball[" + n + "].x = " + balls[n].x + "\n");
-				signal += Math.abs(Math.cos(((ball.x-(recRed.x-60))/70)*Math.PI));
+				signal += Math.abs(Math.cos(((ball.x-(recRed.x-60))/60)*Math.PI));
 				}
-				else signal += Math.abs(Math.cos(((ball.x-recRed.x)/70)*Math.PI));
+				else signal += Math.abs(Math.cos(((ball.x-recRed.x)/60)*Math.PI));
 				}
 				signal = signal/29;
 				var p1 = Math.abs(signal-0.5);
@@ -834,7 +833,8 @@
 				var cell2 = row.insertCell(1);
 				var cell3 = row.insertCell(2);
 				cell1.innerHTML = b.toFixed(2);
-				cell2.innerHTML = document.getElementById('dv').valueAsNumber/95;
+				var za = document.getElementById('dv').valueAsNumber/95;
+				cell2.innerHTML = za.toFixed(2);
 				cell3.innerHTML = trace1.y[trace1.y.length-1].toFixed(2);
 				console.log("b: ", b.toFixed(2));
 				}

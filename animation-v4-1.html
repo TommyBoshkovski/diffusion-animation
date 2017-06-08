@@ -778,7 +778,7 @@
 		}
 		}
 		
-		for(var n = 0; n < balls.length; n++) {
+		/* for(var n = 0; n < balls.length; n++) {
 				var ball = balls[n];
 				if(ball.x<recRed.x){
 				//console.log("ball[" + n + "].x = " + balls[n].x + "\n");
@@ -798,7 +798,7 @@
 				trace1.y.push(p4);
 				
 				signal = 0;
-				lst+=1;
+				lst+=1; */
 		
 		if (rec.x==460)
 		{
@@ -809,9 +809,9 @@
 				var ball = balls[n];
 				if(ball.x<recRed.x){
 				//console.log("ball[" + n + "].x = " + balls[n].x + "\n");
-				signal += Math.abs(Math.cos(((ball.x-(recRed.x-60))/60)*Math.PI));
+				signal += Math.cos(((ball.x-recRed.x)/60)*Math.PI);
 				}
-				else signal += Math.abs(Math.cos(((ball.x-recRed.x)/60)*Math.PI));
+				else signal += Math.cos(((ball.x-recRed.x)/60)*Math.PI);
 				}
 				signal = signal/29;
 				var p1 = Math.abs(signal-0.5);

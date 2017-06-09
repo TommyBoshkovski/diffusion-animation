@@ -82,7 +82,7 @@
 		var context = canvas.getContext('2d');
 		var context1 = canvas1.getContext('2d');
         img = document.getElementById("img");
-		im = new ImObj(3,img);
+		im = new ImObj(-31,img);
 		
         // clear
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -99,10 +99,10 @@
 		var dv = document.getElementById("dv").value*1;
 		
 		changeB();
-		hop=100-dv;
+		hop=30-dv;
 		current_hop = hop;
 		
-		context.drawImage(im.img,3, 580);
+		//context.drawImage(im.img,-30, 580, 200, 40);
 		//
 		//context1.drawImage(seq,0,0,578,210);
 		context1.fillRect(40, 30, 5, 40); // excitation pulse
@@ -209,7 +209,8 @@
 	   //document.getElementById('dv').disabled=true;
 		balls = initBalls();
 	    rec = new Rec(10,0.5,5);
-		
+		img = document.getElementById("img");
+		im = new ImObj(-31,img);
 		recRed = new Rec(70,balls[14].vx,2)
 		rv = xacc[14];
 		i +=1;
@@ -219,6 +220,7 @@
 			stopAni();
 			ini();
 			return;
+			
 		}
 		else runAnimation = !runAnimation;
 		
@@ -226,6 +228,7 @@
 		 document.getElementById('start').innerHTML ="Pause";
 		 var date = new Date();
          var time = date.getTime();
+		 
 		 animate(canvas, canvas1, balls, rec, recRed, im, time);
 		}
 		else{
@@ -257,14 +260,14 @@
         var green = '#02A817';
 		var black = '#000000';
 		var g = document.getElementById("g").value;
-		g = (g*(1/3))/100;
+		g = (g*(1/2))/100;
 		//var g = document.getElementById("g").value/100;
         // G
 		var pp = Math.floor(Math.random() * 28) + 1;
 		var vel;
-		if (hop==100) vel=0;
-		if(hop>20 && hop<100) vel=1;
-		else vel = 20/hop;
+		
+		//if(hop>20 && hop<100) vel=1;
+		vel = 2;
 		var yy = 10;
 		balls.push(new Ball(70, yy, 0.8, vel, g, blue,0));
 		yy+=20;
@@ -314,7 +317,7 @@
 			}while((balls[current_ball].vy>0 && balls[current_ball].currentPos == 28) || (balls[current_ball].vy<0 && balls[current_ball].currentPos == 0))
 			current_hop = 0;
 		  }
-		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos)*20)+10)){
+		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos+1)*20)+10)){
 		    ball.y  += ball.vy;
 			ditch = true;
 		  
@@ -325,7 +328,7 @@
 			ditch = true;
 		  
 		  }
-		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos)*20)+10)){
+		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos+1)*20)+10)){
 		    balls[current_ball].currentPos+=1;
 			current_ball = -1
 			ditch = false;
@@ -359,7 +362,7 @@
 			}while((balls[current_ball].vy>0 && balls[current_ball].currentPos == 28) || (balls[current_ball].vy<0 && balls[current_ball].currentPos == 0))
 			current_hop = 0;
 		  }
-		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos)*20)+10)){
+		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos+1)*20)+10)){
 		    ball.y  += ball.vy;
 			ditch = true;
 		  
@@ -370,7 +373,7 @@
 			ditch = true;
 		  
 		  }
-		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos)*20)+10)){
+		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos+1)*20)+10)){
 		    balls[current_ball].currentPos+=1;
 			current_ball = -1
 			ditch = false;
@@ -401,7 +404,7 @@
 			}while((balls[current_ball].vy>0 && balls[current_ball].currentPos == 28) || (balls[current_ball].vy<0 && balls[current_ball].currentPos == 0))
 			current_hop = 0;
 		  }
-		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos)*20)+10)){
+		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos+1)*20)+10)){
 		    ball.y  += ball.vy;
 			ditch = true;
 		  
@@ -412,7 +415,7 @@
 			ditch = true;
 		  
 		  }
-		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos)*20)+10)){
+		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos+1)*20)+10)){
 		    balls[current_ball].currentPos+=1;
 			current_ball = -1
 			ditch = false;
@@ -492,7 +495,7 @@
 			}while((balls[current_ball].vy>0 && balls[current_ball].currentPos == 28) || (balls[current_ball].vy<0 && balls[current_ball].currentPos == 0))
 			current_hop = 0;
 		  }
-		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos)*20)+10)){
+		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos+1)*20)+10)){
 		    ball.y  += ball.vy;
 			ditch = true;
 		  
@@ -503,7 +506,7 @@
 			ditch = true;
 		  
 		  }
-		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos)*20)+10)){
+		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos+1)*20)+10)){
 		    balls[current_ball].currentPos+=1;
 			current_ball = -1
 			ditch = false;
@@ -536,7 +539,7 @@
 			}while((balls[current_ball].vy>0 && balls[current_ball].currentPos == 28) || (balls[current_ball].vy<0 && balls[current_ball].currentPos == 0))
 			current_hop = 0;
 		  }
-		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos)*20)+10)){
+		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos+1)*20)+10)){
 		    ball.y  += ball.vy;
 			ditch = true;
 		  
@@ -547,7 +550,7 @@
 			ditch = true;
 		  
 		  }
-		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos)*20)+10)){
+		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos+1)*20)+10)){
 		    balls[current_ball].currentPos+=1;
 			current_ball = -1
 			ditch = false;
@@ -579,7 +582,7 @@
 			}while((balls[current_ball].vy>0 && balls[current_ball].currentPos == 28) || (balls[current_ball].vy<0 && balls[current_ball].currentPos == 0))
 			current_hop = 0;
 		  }
-		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos)*20)+10)){
+		  if(current_ball == n && ball.vy>0 && ball.y < (((balls[current_ball].currentPos+1)*20)+10)){
 		    ball.y  += ball.vy;
 			ditch = true;
 		  
@@ -590,7 +593,7 @@
 			ditch = true;
 		  
 		  }
-		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos)*20)+10)){
+		 if (current_ball == n && balls[n].vy>0 && balls[n].y == (((balls[current_ball].currentPos+1)*20)+10)){
 		    balls[current_ball].currentPos+=1;
 			current_ball = -1
 			ditch = false;
@@ -623,7 +626,11 @@
 				}
 			
 		  }
-		  if(start_dif) current_hop++;
+		  if(start_dif)
+			{
+				current_hop+= document.getElementById("dv").valueAsNumber/20;
+				if (hop - current_hop < document.getElementById("dv").valueAsNumber/20) current_hop = hop;
+			}
 		  
       }
       function Ball(x, y, vx, vy, tx, color, cpos) {
@@ -709,7 +716,7 @@
 		context1.fillText("D",255,210);
 		context1.fillText("E",((255+D/2)),210);
 		context1.fillText("F",((255+D/2)) + delta,210);
-		context.drawImage(im.img,im.x, 580);
+		//context.drawImage(im.img,im.x, 580,200,40);
         // render
         context.beginPath();
 		context.moveTo(0, 0);
@@ -757,7 +764,7 @@
 			context.lineTo(canvas.width, pos);
 			context.stroke();
 		}
-		else if(ditch && j == balls[current_ball].currentPos && balls[current_ball].vy>0)
+		else if(ditch && j == balls[current_ball].currentPos +1 && balls[current_ball].vy>0)
 		{	
 			context.beginPath();
 			context.moveTo(0, pos);
@@ -777,35 +784,7 @@
 		}	
 		}
 		}
-		
-		/* for(var n = 0; n < balls.length; n++) {
-				var ball = balls[n];
-				if(ball.x<recRed.x){
-				//console.log("ball[" + n + "].x = " + balls[n].x + "\n");
-				signal += Math.abs(Math.cos(((ball.x-(recRed.x-60))/60)*Math.PI));
-				}
-				else signal += Math.abs(Math.cos(((ball.x-recRed.x)/60)*Math.PI));
-				}
-				signal = signal/29;
-				var p1 = Math.abs(signal-0.5);
-				var p2 = p1*0.99;
-				var p3 = p2 /0.5;
-				var p4 = p3+0.01;
-				
-				console.log("min: ", mmm, " r.x: ", recRed.x);
-				var lst=trace1.x.length;
-				trace1.x.push(lst);
-				trace1.y.push(p4);
-				
-				signal = 0;
-				lst+=1; */
-		
-		if (rec.x==460)
-		{
-			runAnimation = false;
-			document.getElementById('start').innerHTML ="Start";
-			
-			for(var n = 0; n < balls.length; n++) {
+		/*		for(var n = 0; n < balls.length; n++) {
 				var ball = balls[n];
 				if(ball.x<recRed.x){
 				//console.log("ball[" + n + "].x = " + balls[n].x + "\n");
@@ -824,6 +803,34 @@
 				trace1.x.push(lst);
 				trace1.y.push(p4);
 				
+				signal = 0;
+				lst+=1;*/
+		
+		if (rec.x==460)
+		{
+			runAnimation = false;
+			document.getElementById('start').innerHTML ="Start";
+			
+			for(var n = 0; n < balls.length; n++) {
+				var ball = balls[n];
+				//if(ball.x<recRed.x){
+				//console.log("ball[" + n + "].x = " + balls[n].x + "\n");
+				//signal += Math.abs(Math.cos(((ball.x-(recRed.x-100))/100)*Math.PI));
+				signal += Math.abs(ball.x-recRed.x)
+				//}
+				//else signal += Math.abs(Math.cos(((ball.x-recRed.x)/100)*Math.PI));
+				}
+				signal = Math.sqrt(signal);
+				var p1 = Math.abs(signal-0.5);
+				var p2 = p1*0.99;
+				var p3 = p2 /0.5;
+				var p4 = p3+0.01;
+				
+				console.log("min: ", mmm, " r.x: ", recRed.x);
+				var lst=trace1.x.length;
+				trace1.x.push(lst);
+				trace1.y.push(1-(signal*0.99)/22.31);
+				
 				if(document.getElementById('start').innerHTML == "Start"){
 				var tb = document.getElementById('tabela');
 				var row = tb.insertRow(-1);
@@ -831,7 +838,7 @@
 				var cell2 = row.insertCell(1);
 				var cell3 = row.insertCell(2);
 				cell1.innerHTML = b.toFixed(2);
-				var za = document.getElementById('dv').valueAsNumber/95;
+				var za = document.getElementById('dv').valueAsNumber/20;
 				cell2.innerHTML = za.toFixed(2);
 				cell3.innerHTML = trace1.y[trace1.y.length-1].toFixed(2);
 				console.log("b: ", b.toFixed(2));
@@ -881,11 +888,11 @@
   <table>
   <tr>
 <td>
-    <canvas id="myCanvas" width="700" height="900"></canvas>
+    <canvas id="myCanvas" width="760" height="900"></canvas>
 	</td>
 	<td style="vertical-align: top;">
 	<div style="margin-left:40px">
-	<canvas id="myCanvas1" width="578" height="220"></canvas>
+	<canvas id="myCanvas1" width="540" height="220"></canvas>
     <br/>
 	<center>
 	<button onclick="ses()">Spin Echo Sequence [SE]</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -898,7 +905,7 @@
 	<label style="font-size:24px"><b>&#916;</b></label> &nbsp;&nbsp;&nbsp; <input type="range" id="Del" onchange="change()" value="40" max="40"  min="0" style="width:50px">&nbsp;&nbsp;&nbsp;<label><i>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></label>
 	<label style="font-size:24px"><b>&#948;</b></label> &nbsp;&nbsp;&nbsp; <input type="range" id="delta" onchange="change()" max="40" value="40" min="0" style="width:50px">&nbsp;&nbsp;&nbsp;<label><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </i></label>
 	<br/>&nbsp;<br/>
-	<label style="font-size:18px">diffusion coefficient</label> &nbsp;&nbsp;&nbsp; <input type="range" id="dv" onchange="change()" max="95" min="0" value="0" style="width:50px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<label style="font-size:18px">diffusion coefficient</label> &nbsp;&nbsp;&nbsp; <input type="number" id="dv" onchange="change()" max="20" min="0" value="0" style="width:50px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<script>
 	function changeB(){
 	var g = document.getElementById("g").value*1.0;

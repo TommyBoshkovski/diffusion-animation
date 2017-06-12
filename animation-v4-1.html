@@ -269,9 +269,9 @@
 		//if(hop>20 && hop<100) vel=1;
 		vel = 2;
 		var yy = 10;
-		balls.push(new Ball(70, yy, 0.8, vel, g, blue,0));
+		balls.push(new Ball(70, yy, 1.2, vel, g*(14/29), blue,0));
 		yy+=20;
-		xacc.push(g);
+		xacc.push(g*(14/29));
 		for(var i=1;i<28;i++){
 				var rnd = Math.floor(Math.random() * 3) - 1;
 				while(rnd==0 || rnd ==2)
@@ -279,12 +279,12 @@
 					rnd = Math.floor(Math.random() * 3) - 1;
 				}
 				
-				balls.push(new Ball(70, yy, 0.8, rnd*vel, g*((29-i)/29), blue,i));
-				xacc.push(g*((29-i)/29));
+				balls.push(new Ball(70, yy, 1.2, rnd*vel, g*((14-i)/29), blue,i));
+				xacc.push(g*((14-i)/29));
 			yy+=20;
 		}
-        balls.push(new Ball(70, yy, 0.8, -1*vel, g*((1)/29), blue,28));
-        xacc.push(g*((1)/29));
+        balls.push(new Ball(70, yy, 1.2, -1*vel, g*((-14)/29), blue,28));
+        xacc.push(g*((-14)/29));
 
         return balls;
       }
@@ -348,7 +348,7 @@
 		
 		
 		if(rec.x >= (250-(D/2+(delta*1))) && rec.x<(250-D/2)){
-		recRed.x += recRed.vx+rv;
+		recRed.x += recRed.vx;
 		im.x += recRed.vx+rv;
 		if(document.getElementById("dv").valueAsNumber == 0) start_dif = false;
 		else	start_dif=true;
@@ -527,7 +527,7 @@
 		if(rec.x >= (255+D/2) && rec.x <(255+((D/2)+(delta*1)))){
 		if(document.getElementById("dv").valueAsNumber == 0) start_dif = false;
 		else	start_dif=true;
-		recRed.x += recRed.vx+rv;
+		recRed.x += recRed.vx;
 		im.x += recRed.vx+rv;
         for(var n = 0; n < balls.length; n++) {
           var ball = balls[n];
@@ -936,7 +936,7 @@
 	<br/>
 	<br/>
 	<center><table id="tabela" style="text-align: center; border: 1">
-	<tr><td>Relative b-value</td><td>Relative diffusion coefficient</td><td>Relative signal</td></tr>
+	<tr><td style="padding-left:5px;padding-right: 5px;">Relative b-value</td><td style="padding-left:5px;padding-right: 5px;">Relative diffusion coefficient</td><td style="padding-left:5px;padding-right: 5px;">Signal decay</td></tr>
 	</table>
 	</center>
   <script>

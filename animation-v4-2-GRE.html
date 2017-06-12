@@ -750,11 +750,11 @@
 				//draw();
 				if(document.getElementById('start').innerHTML == "Start"){
 				var tb = document.getElementById('tabela');
-				var row = tb.rows;
-				
-				var cell2 = row[1].insertCell(1);
-				var cell3 = row[1].insertCell(2);
-				
+				var row = tb.insertRow(1);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3 = row.insertCell(2);
+				cell1.innerHTML = b.toFixed(2);
 				var za = document.getElementById('dv').valueAsNumber/20;
 				cell2.innerHTML = za.toFixed(2);
 				cell3.innerHTML = trace1.y[trace1.y.length-1].toFixed(2);
@@ -837,11 +837,6 @@
 			b = p4*p7;
 			b = b/274854.1351658991;
 		console.log("b= " , b);
-		var tb = document.getElementById('tabela');
-				var row = tb.insertRow(1);
-				var cell1 = row.insertCell(0);
-				cell1.innerHTML = b.toFixed(2);
-				
 		}
   }
 </script>
